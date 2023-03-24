@@ -1,0 +1,22 @@
+{
+  "name": "graphql-sandbox",
+  "version": "1.0.0",
+  "description": "A minimal project to explore GraphQL capabilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "client": "webpack serve --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NatiAris/graphql-sandbox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NatiAris/graphql-sandbox/issues"
+  },
+  "homepage": "https://github.com/NatiAris/graphql-sandbox#readme"
+}
