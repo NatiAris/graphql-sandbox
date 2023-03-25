@@ -2,15 +2,18 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode: "development",
   entry: "./client/src/index.js",
   output: {
     path: path.join(__dirname, "client", "dist"),
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
       {
-        test: /.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -18,8 +21,15 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   devServer: {
-    contentBase: path.join(__dirname, "client", "dist"),
+    static: {
+      directory: path.join(__dirname, "client", "dist"),
+    },
     compress: true,
     port: 3000,
     proxy: {
