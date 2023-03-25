@@ -8,7 +8,7 @@ const path = require('path');
 
 app.use(cors());
 
-mongoose.connect('mongodb://root:example@mongodb:27017/petlibrary', {
+mongoose.connect('mongodb://root:example@mongodb:27017/admin', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
