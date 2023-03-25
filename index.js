@@ -1,16 +1,16 @@
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
-const schema = require("./schema");
-const mongoose = require("mongoose");
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./schema');
+const mongoose = require('mongoose');
 const app = express();
 
-mongoose.connect("mongodb://localhost/pet-library", {
+mongoose.connect('mongodb://root:example@mongodb:27017/petlibrary', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 app.use(
-  "/graphql",
+  '/graphql',
   graphqlHTTP({
     schema,
     graphiql: true,

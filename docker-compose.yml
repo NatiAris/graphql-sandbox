@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: petlibrary
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    networks:
+      - petlibrary-network
+
+  api:
+    image: node:14
+    container_name: petlibrary_api
+    command: npm start
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "4000:4000"
+    networks:
+      - petlibrary-network
+    depends_on:
+      - mongodb
+
+  web:
+    image: node:14
+    container_name: petlibrary_web
+    command: npm start
+    working_dir: /app
+    volumes:
+      - ./client:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - petlibrary-network
+    depends_on:
+      - api
+
+volumes:
+  mongodb_data:
+  mongodb_config:
+
+networks:
+  petlibrary-network:
+    external: true
